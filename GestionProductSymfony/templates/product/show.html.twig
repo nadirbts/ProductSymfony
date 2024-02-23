@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product
+{% endblock %}
+
+{% block body %}
+	<fieldset>
+		<legend>
+			<h1>Affichage du produits no'{{ product.id }}':</h1>
+		</legend>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ product.id }}</td>
+				</tr>
+				<tr>
+					<th>Price</th>
+					<td>{{ product.price }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ product.description }}</td>
+				</tr>
+				<tr>
+					<th>UrlImage</th>
+					<td>{{ product.urlImage }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="{{ path('app_product_index') }}">back to list</a>
+
+		{% if  is_granted('ROLE_ADMIN')  %}
+
+			<a href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
+			{{ include('product/_delete_form.html.twig') }}
+		{% endif %}
+
+
+	</fieldset>
+{% endblock %}
+

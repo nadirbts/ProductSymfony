@@ -1,0 +1,47 @@
+header {
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    left: 0%;
+    bottom: 85%;
+    background-color: rgb(52, 125, 250);
+    display: flex;
+    
+    align-items: center;
+    flex-direction: row;
+}
+
+.menu {
+    margin-left: 40%;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 500px;
+    justify-content:space-around;
+
+}
+
+.menu button {
+    height: 100px;
+    width: 200px;
+}
+
+.error {
+    color: red;
+
+}
+
+body {
+    background-color: aquamarine;
+    margin-top: 20%;
+}
+
+img {
+    width: 175px;
+    height: 100px;
+}
+fieldset{
+    background-color: rgb(226, 253, 252);
+}
+td{
+    border: 1px solid black;
+}

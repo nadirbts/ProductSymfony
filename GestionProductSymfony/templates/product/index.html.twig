@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index
+{% endblock %}
+
+{% block body %}
+
+	{% if not is_granted('ROLE_ADMIN') and app.request.query.get('error') is not null %}
+
+		<script>
+			alert('{{ app.request.query.get('error') }}')
+		</script>
+
+	{% endif %}
+
+
+	<fieldset>
+		<legend>
+			<h1>Affichage de tout les produits:</h1>
+		</legend>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Prix</th>
+					<th>Description</th>
+					<th>UrlImage</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody><hr>
+				{% for product in products %}
+					<tr>
+						<td>{{ product.id }}</td>
+						<td>{{ product.price }}</td>
+						<td>{{ product.description }}</td>
+						<td><img src={{ product.urlImage }} alt={{ product.urlImage }}/></td>
+						<td>
+							<a href="{{ path('app_product_show', {'id': product.id}) }}">Montrer les details</a>
+							<br>
+
+							{% if  is_granted('ROLE_ADMIN')  %}
+
+								<a href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
+
+							{% endif %}
+
+						</td>
+
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucun Produit Trouve</td>
+					</tr>
+				{% endfor %}
+
+			</tbody>
+		</table>
+		<hr>
+		{% if  is_granted('ROLE_ADMIN')  %}
+
+
+			<a href="{{ path('app_product_new') }}">Creer un Produit</a>
+
+		{% endif %}
+	</fieldset>
+{% endblock %}
+
